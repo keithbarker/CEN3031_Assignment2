@@ -7,6 +7,7 @@ import Search from './components/Search';
 import ViewBuilding from './components/ViewBuilding';
 import BuildingList from './components/BuildingList';
 import Credit from './components/Credit';
+import FormDialog from './components/AddBuilding'
 
 class App extends React.Component {
   constructor(props) {
@@ -51,6 +52,7 @@ class App extends React.Component {
         <main>
           <div className="row">
             <div className="column1">
+              <FormDialog/>
               <div>
                 <Table>
                   <TableHead>

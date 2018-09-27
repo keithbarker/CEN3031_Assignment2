@@ -7,7 +7,7 @@ class Search extends React.Component {
 
     return (
       <form>
-        <input type="text" onChange={this.props.filterUpdate} placeholder="Type to Filter" />
+        <input className="SearchInput" type="text" onChange={this.props.filterUpdate} placeholder="Type to Filter" />
       </form>
     );
   }
