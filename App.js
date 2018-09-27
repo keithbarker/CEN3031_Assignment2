@@ -40,6 +40,13 @@ class App extends React.Component {
     this.setState({data, bldg})
   }
 
+  addBuilding = (name, code, id, address, latitude, longitude) => {
+    const coordinates = {latitude, longitude}
+    const bldg = {name, code, id, address, coordinates}
+    const data = [bldg].concat(this.state.data)
+    this.setState({data})
+  }
+
   render() {
     
     return (
@@ -52,7 +59,7 @@ class App extends React.Component {
         <main>
           <div className="row">
             <div className="column1">
-              <FormDialog/>
+              <FormDialog addBuilding={this.addBuilding}/>
               <div>
                 <Table>
                   <TableHead>

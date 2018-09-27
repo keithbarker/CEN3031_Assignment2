@@ -4,13 +4,17 @@ import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
 export default class FormDialog extends React.Component {
   state = {
     open: false,
-    bldg: {}
+    name: '',
+    code: '',
+    id: '',
+    address: '',
+    latitude: '',
+    longitude: ''
   };
 
   handleClickOpen = () => {
@@ -22,8 +26,19 @@ export default class FormDialog extends React.Component {
   };
 
   updateBldgState = e => {
-    this.setState({e.target.name: e.target.value})
-    console.log(this.state.data)
+    this.setState({[e.target.name]: e.target.value})
+  }
+
+  addNewBuilding = () => {
+    this.props.addBuilding(
+      this.state.name,
+      this.state.code,
+      this.state.id,
+      this.state.address,
+      this.state.latitude,
+      this.state.longitude
+    )
+    this.handleClose()
   }
 
   render() {
@@ -47,38 +62,49 @@ export default class FormDialog extends React.Component {
               autoFocus
               onChange={this.updateBldgState}
               margin="dense"
+              name="name"
               id="name"
               label="Building Name"
               fullWidth
             />
           <TextField
               margin="dense"
+              onChange={this.updateBldgState}
               id="id"
+              name="id"
               label="Building ID"
               fullWidth
             />
             <TextField
               margin="dense"
+              onChange={this.updateBldgState}
               id="code"
+              name="code"
               label="Building Abbreviation"
               fullWidth
             />
             <TextField
               margin="dense"
+              onChange={this.updateBldgState}
               id="address"
+              name="address"
               label="Address"
               type="textarea"
               fullWidth
             />
             <TextField
               margin="dense"
+              onChange={this.updateBldgState}
               id="latitude"
+              name="latitude"
               label="Coordinates: latitude"
               fullWidth
             />
             <TextField
               margin="dense"
+              onChange={this.updateBldgState}
               id="longitude"
+              name="longitude"
               label="Coordinates: longitude"
               fullWidth
             />
@@ -87,7 +113,10 @@ export default class FormDialog extends React.Component {
             <Button onClick={this.handleClose} color="primary">
               Cancel
             </Button>
-            <Button onClick={this.handleClose} color="primary">
+            <Button
+              onClick={this.addNewBuilding}
+              color="primary"
+            >
               Add Building
             </Button>
           </DialogActions>
