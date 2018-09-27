@@ -3,11 +3,13 @@ import Table from '@material-ui/core/Table';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper'
 import Search from './components/Search';
 import ViewBuilding from './components/ViewBuilding';
 import BuildingList from './components/BuildingList';
 import Credit from './components/Credit';
 import FormDialog from './components/AddBuilding'
+import Typography from '@material-ui/core/Typography';
 
 class App extends React.Component {
   constructor(props) {
@@ -51,14 +53,13 @@ class App extends React.Component {
     
     return (
       <div className="bg">
-        <div className="row">
-          <h1>UF Directory App</h1>
-        </div>
-
-        <Search filterUpdate={this.filterUpdate}/>
+        <Paper className="headerandsearch">
+          <Typography variant="display3">UF Directory App</Typography>
+          <Search filterUpdate={this.filterUpdate}/>
+        </Paper>
         <main>
           <div className="row">
-            <div className="column1">
+            <Paper className="column1">
               <FormDialog addBuilding={this.addBuilding}/>
               <div>
                 <Table>
@@ -75,7 +76,7 @@ class App extends React.Component {
                   />
                 </Table>
               </div>
-            </div>
+            </Paper>
             <div className="column2">
               <ViewBuilding removeBuilding={this.removeBuilding} bldg={this.state.bldg}/>
             </div>
